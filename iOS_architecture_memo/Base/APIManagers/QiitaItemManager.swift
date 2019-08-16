@@ -9,7 +9,7 @@
 import Foundation
 
 class QiitaItemManager {
-    static func getItems(completionHandler: @escaping ([QiitaItem]?) -> (Void)) {
+    static func fetchQiitaItems(completionHandler: @escaping ([QiitaItem]?) -> (Void)) {
         APIClient.request(urlStr: "https://qiita.com/api/v2/items") { (str, err) -> (Void) in
             if let err = err {
                 print(err)

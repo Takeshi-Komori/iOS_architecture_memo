@@ -11,7 +11,7 @@ import UIKit
 
 class QiitaListModel: NSObject {
     let notificationCenter = NotificationCenter()
-    
+    //dataSourceが更新された際にControllerに通知
     var dataSource: [QiitaItem] = [] {
         didSet {
             notificationCenter.post(name: NSNotification.Name(rawValue: "qiitaItemsUpdated"), object: nil)
@@ -19,7 +19,7 @@ class QiitaListModel: NSObject {
     }
     
     func fetchQiitaItems() {
-        QiitaItemManager.getItems { [weak self] (qiitaItems) -> (Void) in
+        QiitaItemManager.fetchQiitaItems { [weak self] (qiitaItems) -> (Void) in
             guard let weakSelf = self else { return }
             guard let qiitaItems = qiitaItems else { return }
             weakSelf.dataSource = qiitaItems
