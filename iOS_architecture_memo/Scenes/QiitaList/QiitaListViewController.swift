@@ -9,9 +9,19 @@
 import UIKit
 
 final class QiitaListViewController: UIViewController {
-    @IBOutlet private weak var tableView: UITableView!
-    private var dataSource: [QiitaItem] = []
-    private let cellReuseIdentifier = "QiitaListTableViewCell"
+    //View
+    @IBOutlet weak var qiitaListView: QiitaListView!
+    
+    //Model
+    var qiitaListModel: QiitaListModel? {
+        didSet {
+            registerModel()
+        }
+    }
+    
+    deinit {
+        qiitaListModel?.notificationCenter.removeObserver(self)
+    }
     
     static func createInstance() -> QiitaListViewController {
         let className = "QiitaListViewController"
@@ -22,40 +32,48 @@ final class QiitaListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: cellReuseIdentifier, bundle: nil),
-                           forCellReuseIdentifier: cellReuseIdentifier)
-        
-        QiitaItemManager.getItems { [weak self] (qiitaItems) -> (Void) in
-            guard let weakSelf = self else { return }
-            guard let qiitaItems = qiitaItems else { return }
-            weakSelf.dataSource = qiitaItems
-            weakSelf.tableView.reloadData()
-        }
-    }
-}
-
-extension QiitaListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        qiitaListView.tableView.delegate = self
+        qiitaListView.tableView.dataSource = self
+        qiitaListView.tableView.register(UINib(nibName: "QiitaListTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: "QiitaListTableViewCell")
+        qiitaListModel?.fetchQiitaItems()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as? QiitaListTableViewCell
-        guard let qiitaListTableViewCell = cell else { return UITableViewCell() }
-        let qiitaItem = dataSource[indexPath.row]
-        qiitaListTableViewCell.configure(qiitaItem: qiitaItem)
-        return qiitaListTableViewCell
+    func registerModel() {
+        //ControllerがModelの更新通知を監視
+        qiitaListModel?.notificationCenter.addObserver(forName: NSNotification.Name("qiitaItemsUpdated"),
+                                                       object: nil,
+                                                       queue: nil,
+                                                       using:
+            { [weak self] (notification) in
+                //更新を受け取ったらどのように更新するかをViewに指示する
+                self?.qiitaListView.tableView.reloadData()
+        })
     }
 }
 
 extension QiitaListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let dataSource = qiitaListModel?.dataSource else { return }
         let qiitaItem = dataSource[indexPath.item]
         let viewController = QiitaDetailViewController.createInstance(qiitaItem: qiitaItem)
         navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension QiitaListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let dataSource = qiitaListModel?.dataSource else { return 0 }
+        return dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "QiitaListTableViewCell", for: indexPath) as? QiitaListTableViewCell
+        guard let qiitaListTableViewCell = cell else { return UITableViewCell() }
+        guard let dataSource = qiitaListModel?.dataSource else { return UITableViewCell() }
+        let qiitaItem = dataSource[indexPath.row]
+        qiitaListTableViewCell.configure(qiitaItem: qiitaItem)
+        return qiitaListTableViewCell
     }
 }
 

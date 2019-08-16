@@ -18,23 +18,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gMP-fZ-2q5">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RfN-lX-s5u" customClass="QiitaListView" customModule="iOS_architecture_memo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gMP-fZ-2q5" firstAttribute="leading" secondItem="nYJ-1o-M7f" secondAttribute="leading" id="6Bx-o6-YKu"/>
-                            <constraint firstItem="nYJ-1o-M7f" firstAttribute="bottom" secondItem="gMP-fZ-2q5" secondAttribute="bottom" id="Fha-1i-UMb"/>
-                            <constraint firstItem="nYJ-1o-M7f" firstAttribute="trailing" secondItem="gMP-fZ-2q5" secondAttribute="trailing" id="xdj-Bl-7Ml"/>
-                            <constraint firstItem="gMP-fZ-2q5" firstAttribute="top" secondItem="nYJ-1o-M7f" secondAttribute="top" id="z1M-Wg-qlB"/>
+                            <constraint firstItem="nYJ-1o-M7f" firstAttribute="bottom" secondItem="RfN-lX-s5u" secondAttribute="bottom" id="NSs-eq-gFb"/>
+                            <constraint firstItem="nYJ-1o-M7f" firstAttribute="trailing" secondItem="RfN-lX-s5u" secondAttribute="trailing" id="STV-cV-2IJ"/>
+                            <constraint firstItem="RfN-lX-s5u" firstAttribute="top" secondItem="nYJ-1o-M7f" secondAttribute="top" id="Yds-7Y-a7D"/>
+                            <constraint firstItem="RfN-lX-s5u" firstAttribute="leading" secondItem="nYJ-1o-M7f" secondAttribute="leading" id="bCw-hY-ybX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nYJ-1o-M7f"/>
                     </view>
                     <navigationItem key="navigationItem" id="i13-Nj-rTK"/>
                     <connections>
-                        <outlet property="tableView" destination="gMP-fZ-2q5" id="lEC-6s-VaP"/>
+                        <outlet property="qiitaListView" destination="RfN-lX-s5u" id="5sV-u4-FyQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFb-Mc-kkm" userLabel="First Responder" sceneMemberID="firstResponder"/>
