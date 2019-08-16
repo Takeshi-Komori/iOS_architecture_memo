@@ -8,8 +8,6 @@
 
 import UIKit
 
-//プレゼンテーションロジック -> ユーザーの入力？
-
 final class QiitaListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private var presenter: QiitaListPresenterInput!
@@ -31,7 +29,7 @@ final class QiitaListViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "QiitaListTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "QiitaListTableViewCell")
-        presenter.fetchQiitaItems()
+        presenter.fetchQiitaItemsAfterViewDidLoad()
     }
 }
 
