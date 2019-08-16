@@ -73,6 +73,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F82F8E5B2306605C00A58B91 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				F8568BF123050300002FDCE6 /* QiitaList */,
+				F8568BF223050317002FDCE6 /* QiitaDetail */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		F8568BD12304FFA2002FDCE6 = {
 			isa = PBXGroup;
 			children = (
@@ -96,8 +105,7 @@
 			children = (
 				F8568BDD2304FFA2002FDCE6 /* AppDelegate.swift */,
 				F8568BF723050347002FDCE6 /* Base */,
-				F8568BF123050300002FDCE6 /* QiitaList */,
-				F8568BF223050317002FDCE6 /* QiitaDetail */,
+				F82F8E5B2306605C00A58B91 /* Scenes */,
 				F8568BE12304FFA2002FDCE6 /* Main.storyboard */,
 				F8568BE42304FFA5002FDCE6 /* Assets.xcassets */,
 				F8568BE62304FFA5002FDCE6 /* LaunchScreen.storyboard */,
