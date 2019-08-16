@@ -1,0 +1,6 @@
+framework module Pods_iOS_architecture_memo {
+  umbrella header "Pods-iOS_architecture_memo-umbrella.h"
+
+  export *
+  module * { export * }
+}
