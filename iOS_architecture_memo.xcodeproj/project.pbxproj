@@ -130,26 +130,26 @@
 			isa = PBXGroup;
 			children = (
 				F8568C00230503FA002FDCE6 /* Services */,
-				F8568BF823050356002FDCE6 /* Models */,
-				F8568BF923050364002FDCE6 /* ModelManagers */,
+				F8568BF823050356002FDCE6 /* Responses */,
+				F8568BF923050364002FDCE6 /* APIManagers */,
 			);
 			path = Base;
 			sourceTree = "<group>";
 		};
-		F8568BF823050356002FDCE6 /* Models */ = {
+		F8568BF823050356002FDCE6 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
 				F8568BFA230503AE002FDCE6 /* QiitaItem.swift */,
 			);
-			path = Models;
+			path = Responses;
 			sourceTree = "<group>";
 		};
-		F8568BF923050364002FDCE6 /* ModelManagers */ = {
+		F8568BF923050364002FDCE6 /* APIManagers */ = {
 			isa = PBXGroup;
 			children = (
 				F8568BFE230503F3002FDCE6 /* QiitaItemManager.swift */,
 			);
-			path = ModelManagers;
+			path = APIManagers;
 			sourceTree = "<group>";
 		};
 		F8568C00230503FA002FDCE6 /* Services */ = {
