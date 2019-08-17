@@ -7,16 +7,23 @@
 //
 
 import Foundation
+import RxSwift
 
-protocol QiitaListModelInput {
-    func fetchQiitaItems(completionHandler: @escaping ([QiitaItem]) -> (Void))
+protocol QiitaListModelProtocol {
+    func fetchQiitaItems() -> Observable<[QiitaItem]>
 }
 
-class QiitaListModel: QiitaListModelInput {
-    func fetchQiitaItems(completionHandler: @escaping ([QiitaItem]) -> (Void)) {
-        QiitaItemManager.fetchQiitaItems { (qiitaItems) -> (Void) in
-            guard let qiitaItems = qiitaItems else { return }
-            completionHandler(qiitaItems)
-        }
+class QiitaListModel: QiitaListModelProtocol {
+    func fetchQiitaItems() -> Observable<[QiitaItem]> {
+        return Observable.create({ [weak self] (observer) -> Disposable in
+            QiitaItemManager.fetchQiitaItems(completionHandler: { (qiitaItems) -> (Void) in
+                guard let qiitaItems = qiitaItems else {
+                    observer.onError(APIError.noResponse)
+                    return
+                }
+                observer.onNext(qiitaItems)
+            })
+            return Disposables.create()
+        })
     }
 }

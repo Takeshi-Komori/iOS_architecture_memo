@@ -9,6 +9,10 @@
 import Foundation
 import Alamofire
 
+public enum APIError: Error {
+    case noResponse
+}
+
 class APIClient {
     static func request(urlStr: String, completionHandler: @escaping (String?, Error?) -> (Void)) {
         guard let url = URL(string: urlStr) else { return }
