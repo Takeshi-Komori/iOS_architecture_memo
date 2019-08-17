@@ -48,5 +48,12 @@ class QiitaListViewModel {
             }
             .bind(to: _dataSource)
             .disposed(by: disposeBag)
+        
+        fetchQiitaItemsResponse
+            .flatMap { (event) -> Observable<Error> in
+                event.error.map(Observable.just) ?? .empty()
+            }.subscribe { (error) in
+                //Error Handling
+            }.disposed(by: disposeBag)
     }
 }
