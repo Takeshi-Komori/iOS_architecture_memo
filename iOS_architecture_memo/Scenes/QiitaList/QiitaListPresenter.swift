@@ -12,7 +12,7 @@ protocol QiitaListPresenterInput {
     var numberOfQiitaItems: Int { get }
     func item(forRow row: Int) -> QiitaItem?
     func didSelectRow(at indexPath: IndexPath)
-    func fetchQiitaItemsAfterViewDidLoad()
+    func viewDidLoad()
 }
 
 protocol QiitaListPresenterOutput: class {
@@ -44,7 +44,7 @@ class QiitaListPresenter: QiitaListPresenterInput {
         view.transitionToQiitaDetail(qiitaItem: qiitaItem)
     }
     
-    func fetchQiitaItemsAfterViewDidLoad() {
+    func viewDidLoad() {
         model.fetchQiitaItems { [weak self] (qiitaItems) -> (Void) in
             self?.dataSource = qiitaItems
             //View(ViewController)に描画指示を出す

@@ -29,7 +29,7 @@ final class QiitaListViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "QiitaListTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "QiitaListTableViewCell")
-        presenter.fetchQiitaItemsAfterViewDidLoad()
+        presenter.viewDidLoad()
     }
 }
 
