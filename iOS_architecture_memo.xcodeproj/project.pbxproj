@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		69475A60A5F834C78937A22B /* Pods_iOS_architecture_memo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C1915BD80A51CC5004366D /* Pods_iOS_architecture_memo.framework */; };
-		F82F8E632306DC4000A58B91 /* QiitaListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F8E622306DC4000A58B91 /* QiitaListModel.swift */; };
-		F82F8E652306DC5500A58B91 /* QiitaListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F8E642306DC5500A58B91 /* QiitaListPresenter.swift */; };
+		F82F8E67230780C100A58B91 /* QiitaListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F8E66230780C100A58B91 /* QiitaListViewModel.swift */; };
+		F82F8E6A230780DD00A58B91 /* QiitaListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F8E69230780DD00A58B91 /* QiitaListModel.swift */; };
 		F8568BDE2304FFA2002FDCE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8568BDD2304FFA2002FDCE6 /* AppDelegate.swift */; };
 		F8568BE02304FFA2002FDCE6 /* QiitaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8568BDF2304FFA2002FDCE6 /* QiitaListViewController.swift */; };
 		F8568BE32304FFA2002FDCE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8568BE12304FFA2002FDCE6 /* Main.storyboard */; };
@@ -29,8 +29,8 @@
 		1CB5028DD9B7672EA2E6C8E5 /* Pods-iOS_architecture_memo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_architecture_memo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS_architecture_memo/Pods-iOS_architecture_memo.debug.xcconfig"; sourceTree = "<group>"; };
 		55E85CC56324263170DFC5EA /* Pods-iOS_architecture_memo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_architecture_memo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS_architecture_memo/Pods-iOS_architecture_memo.release.xcconfig"; sourceTree = "<group>"; };
 		65C1915BD80A51CC5004366D /* Pods_iOS_architecture_memo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_architecture_memo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F82F8E622306DC4000A58B91 /* QiitaListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaListModel.swift; sourceTree = "<group>"; };
-		F82F8E642306DC5500A58B91 /* QiitaListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaListPresenter.swift; sourceTree = "<group>"; };
+		F82F8E66230780C100A58B91 /* QiitaListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaListViewModel.swift; sourceTree = "<group>"; };
+		F82F8E69230780DD00A58B91 /* QiitaListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaListModel.swift; sourceTree = "<group>"; };
 		F8568BDA2304FFA2002FDCE6 /* iOS_architecture_memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_architecture_memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8568BDD2304FFA2002FDCE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8568BDF2304FFA2002FDCE6 /* QiitaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaListViewController.swift; sourceTree = "<group>"; };
@@ -125,8 +125,8 @@
 				F8568BEF230502F8002FDCE6 /* QiitaListViewController.storyboard */,
 				F8568C0423065300002FDCE6 /* QiitaListTableViewCell.swift */,
 				F8568C0523065300002FDCE6 /* QiitaListTableViewCell.xib */,
-				F82F8E642306DC5500A58B91 /* QiitaListPresenter.swift */,
-				F82F8E622306DC4000A58B91 /* QiitaListModel.swift */,
+				F82F8E66230780C100A58B91 /* QiitaListViewModel.swift */,
+				F82F8E69230780DD00A58B91 /* QiitaListModel.swift */,
 			);
 			path = QiitaList;
 			sourceTree = "<group>";
@@ -300,10 +300,10 @@
 				F8568C0323050427002FDCE6 /* APIClient.swift in Sources */,
 				F8568C0623065300002FDCE6 /* QiitaListTableViewCell.swift in Sources */,
 				F8568BFF230503F3002FDCE6 /* QiitaItemManager.swift in Sources */,
+				F82F8E67230780C100A58B91 /* QiitaListViewModel.swift in Sources */,
 				F8568BE02304FFA2002FDCE6 /* QiitaListViewController.swift in Sources */,
-				F82F8E632306DC4000A58B91 /* QiitaListModel.swift in Sources */,
 				F8568BFB230503AE002FDCE6 /* QiitaItem.swift in Sources */,
-				F82F8E652306DC5500A58B91 /* QiitaListPresenter.swift in Sources */,
+				F82F8E6A230780DD00A58B91 /* QiitaListModel.swift in Sources */,
 				F8568BF42305032F002FDCE6 /* QiitaDetailViewController.swift in Sources */,
 				F8568BDE2304FFA2002FDCE6 /* AppDelegate.swift in Sources */,
 			);

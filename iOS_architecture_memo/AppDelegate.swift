@@ -14,10 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let viewController = QiitaListViewController.createInstance()
-        let model = QiitaListModel()
-        let presenter = QiitaListPresenter(view: viewController, model: model)
-        viewController.inject(presenter: presenter)
-        
         let rootViewController = UINavigationController(rootViewController: viewController)
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = rootViewController
