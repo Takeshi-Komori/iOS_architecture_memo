@@ -8,8 +8,6 @@
 
 import UIKit
 
-//プレゼンテーションロジック -> ユーザーの入力？
-
 final class QiitaListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private var presenter: QiitaListPresenterInput!
