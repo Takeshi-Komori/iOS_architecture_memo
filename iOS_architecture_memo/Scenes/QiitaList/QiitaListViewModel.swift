@@ -11,7 +11,11 @@ import Foundation
 class QiitaListViewModel {
     private let notificationCenter: NotificationCenter
     private let model: QiitaListModelProtocol
-    private(set) var dataSource: [QiitaItem] = []
+    private(set) var dataSource: [QiitaItem] = [] {
+        didSet {
+            notificationCenter.post(name: NSNotification.Name("qiitaItemsUpdated"), object: nil)
+        }
+    }
     
     init(notificationCenter: NotificationCenter, model: QiitaListModelProtocol = QiitaListModel()) {
         self.notificationCenter = notificationCenter
@@ -21,7 +25,6 @@ class QiitaListViewModel {
     func viewDidLoad() {
         model.fetchQiitaItems { [weak self] (qiitaItems) -> (Void) in
             self?.dataSource = qiitaItems
-            self?.notificationCenter.post(name: NSNotification.Name("qiitaItemsUpdated"), object: nil)
         }
     }
 }
