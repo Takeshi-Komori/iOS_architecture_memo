@@ -5,6 +5,8 @@ use_frameworks!
 
 def install_pods
   pod 'Alamofire'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 end
 
 target ‘iOS_architecture_memo’ do
