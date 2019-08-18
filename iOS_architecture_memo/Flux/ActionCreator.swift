@@ -24,7 +24,10 @@ extension ActionCreator {
             self?.dispatcher.dispatch(.fetchQiitaItems(qiitaItems))
         }
     }
-    
+}
+
+//MARK: - SelectQiitaItem
+extension ActionCreator {
     func selectQiitaItem(_ qiitaItem: QiitaItem) {
         dispatcher.dispatch(.selectedQiitaItem(qiitaItem))
     }

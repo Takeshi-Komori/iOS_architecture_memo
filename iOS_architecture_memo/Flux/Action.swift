@@ -9,7 +9,6 @@
 import Foundation
 
 enum Action {
-    //QiitaList
     case fetchQiitaItems([QiitaItem])
     case selectedQiitaItem(QiitaItem)
 }
