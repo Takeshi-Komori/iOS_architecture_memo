@@ -11,9 +11,11 @@ import UIKit
 final class QiitaListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private var presenter: QiitaListPresenterInput!
+    private var dataSource: [QiitaItem] = []
     
     func inject(presenter: QiitaListPresenterInput) {
         self.presenter = presenter
+        self.presenter.qiitaListPresenterOutput = self
     }
     
     static func createInstance() -> QiitaListViewController {
@@ -29,21 +31,27 @@ final class QiitaListViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "QiitaListTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "QiitaListTableViewCell")
-        presenter.fetchQiitaItems()
+        presenter.viewDidLoad()
+    }
+}
+
+extension QiitaListViewController: QiitaListPresenterOutput {
+    func updateQiitaItems(_ qiitaItems: [QiitaItem]) {
+        self.dataSource = qiitaItems
+        self.tableView.reloadData()
     }
 }
 
 extension QiitaListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOfQiitaItems
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QiitaListTableViewCell", for: indexPath) as? QiitaListTableViewCell
         guard let qiitaListTableViewCell = cell else { return UITableViewCell() }
-        if let qiitaItem = presenter.item(forRow: indexPath.row) {
-            qiitaListTableViewCell.configure(qiitaItem: qiitaItem)
-        }
+        let qiitaItem = dataSource[indexPath.row]
+        qiitaListTableViewCell.configure(qiitaItem: qiitaItem)
         return qiitaListTableViewCell
     }
 }
@@ -51,17 +59,7 @@ extension QiitaListViewController: UITableViewDataSource {
 extension QiitaListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        //入力に対して処理を分けるなどのロジックはpresenterが受け持つ
-        presenter.didSelectRow(at: indexPath)
-    }
-}
-
-extension QiitaListViewController: QiitaListPresenterOutput {
-    func updateQiitaItems(_ qiitaItems: [QiitaItem]) {
-        tableView.reloadData()
-    }
-    
-    func transitionToQiitaDetail(qiitaItem: QiitaItem) {
+        let qiitaItem = dataSource[indexPath.row]
         let viewController = QiitaDetailViewController.createInstance(qiitaItem: qiitaItem)
         navigationController?.pushViewController(viewController, animated: true)
     }
