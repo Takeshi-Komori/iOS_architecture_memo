@@ -7,21 +7,15 @@
 //
 
 import UIKit
+import RxSwift
 
 final class QiitaListViewController: UIViewController {
     //View
     @IBOutlet weak var qiitaListView: QiitaListView!
+    var qiitaListRxModel: QiitaListRxModelType?
     
-    //Model
-    var qiitaListModel: QiitaListModel? {
-        didSet {
-            registerModel()
-        }
-    }
-    
-    deinit {
-        qiitaListModel?.notificationCenter.removeObserver(self)
-    }
+    private let disposeBag = DisposeBag()
+    private var dataSource: [QiitaItem] = []
     
     static func createInstance() -> QiitaListViewController {
         let className = "QiitaListViewController"
@@ -36,25 +30,21 @@ final class QiitaListViewController: UIViewController {
         qiitaListView.tableView.dataSource = self
         qiitaListView.tableView.register(UINib(nibName: "QiitaListTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "QiitaListTableViewCell")
-        qiitaListModel?.fetchQiitaItems()
+        qiitaListRxModel?.fetchQiitaItems()
+        bindQiitaRxModel()
     }
     
-    func registerModel() {
-        //ControllerがModelの更新通知を監視
-        qiitaListModel?.notificationCenter.addObserver(forName: NSNotification.Name("qiitaItemsUpdated"),
-                                                       object: nil,
-                                                       queue: nil,
-                                                       using:
-            { [weak self] (notification) in
-                //更新を受け取ったらどのように更新するかをViewに指示する
-                self?.qiitaListView.tableView.reloadData()
-        })
+    private func bindQiitaRxModel() {
+        qiitaListRxModel?.dataSource
+            .subscribe(onNext: { qiitaItemList in
+                self.dataSource = qiitaItemList
+                self.qiitaListView.tableView.reloadData()
+            }).disposed(by: disposeBag)
     }
 }
 
 extension QiitaListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let dataSource = qiitaListModel?.dataSource else { return }
         let qiitaItem = dataSource[indexPath.item]
         let viewController = QiitaDetailViewController.createInstance(qiitaItem: qiitaItem)
         navigationController?.pushViewController(viewController, animated: true)
@@ -63,14 +53,12 @@ extension QiitaListViewController: UITableViewDelegate {
 
 extension QiitaListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let dataSource = qiitaListModel?.dataSource else { return 0 }
         return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QiitaListTableViewCell", for: indexPath) as? QiitaListTableViewCell
         guard let qiitaListTableViewCell = cell else { return UITableViewCell() }
-        guard let dataSource = qiitaListModel?.dataSource else { return UITableViewCell() }
         let qiitaItem = dataSource[indexPath.row]
         qiitaListTableViewCell.configure(qiitaItem: qiitaItem)
         return qiitaListTableViewCell

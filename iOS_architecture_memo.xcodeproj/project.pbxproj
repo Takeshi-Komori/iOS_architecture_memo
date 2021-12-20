@@ -3,14 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		69475A60A5F834C78937A22B /* Pods_iOS_architecture_memo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C1915BD80A51CC5004366D /* Pods_iOS_architecture_memo.framework */; };
 		F82F8E5D2306C9B900A58B91 /* QiitaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F8E5C2306C9B900A58B91 /* QiitaListView.swift */; };
 		F82F8E5F2306C9C500A58B91 /* QiitaListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82F8E5E2306C9C500A58B91 /* QiitaListView.xib */; };
-		F82F8E612306CA5900A58B91 /* QiitaListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F8E602306CA5900A58B91 /* QiitaListModel.swift */; };
+		F82F8E612306CA5900A58B91 /* QiitaListRxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F8E602306CA5900A58B91 /* QiitaListRxModel.swift */; };
 		F8568BDE2304FFA2002FDCE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8568BDD2304FFA2002FDCE6 /* AppDelegate.swift */; };
 		F8568BE02304FFA2002FDCE6 /* QiitaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8568BDF2304FFA2002FDCE6 /* QiitaListViewController.swift */; };
 		F8568BE32304FFA2002FDCE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8568BE12304FFA2002FDCE6 /* Main.storyboard */; };
@@ -32,7 +32,7 @@
 		65C1915BD80A51CC5004366D /* Pods_iOS_architecture_memo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_architecture_memo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82F8E5C2306C9B900A58B91 /* QiitaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaListView.swift; sourceTree = "<group>"; };
 		F82F8E5E2306C9C500A58B91 /* QiitaListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QiitaListView.xib; sourceTree = "<group>"; };
-		F82F8E602306CA5900A58B91 /* QiitaListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaListModel.swift; sourceTree = "<group>"; };
+		F82F8E602306CA5900A58B91 /* QiitaListRxModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaListRxModel.swift; sourceTree = "<group>"; };
 		F8568BDA2304FFA2002FDCE6 /* iOS_architecture_memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_architecture_memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8568BDD2304FFA2002FDCE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8568BDF2304FFA2002FDCE6 /* QiitaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaListViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 				F82F8E5E2306C9C500A58B91 /* QiitaListView.xib */,
 				F8568C0423065300002FDCE6 /* QiitaListTableViewCell.swift */,
 				F8568C0523065300002FDCE6 /* QiitaListTableViewCell.xib */,
-				F82F8E602306CA5900A58B91 /* QiitaListModel.swift */,
+				F82F8E602306CA5900A58B91 /* QiitaListRxModel.swift */,
 			);
 			path = QiitaList;
 			sourceTree = "<group>";
@@ -256,20 +256,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-iOS_architecture_memo/Pods-iOS_architecture_memo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-iOS_architecture_memo/Pods-iOS_architecture_memo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-iOS_architecture_memo/Pods-iOS_architecture_memo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOS_architecture_memo/Pods-iOS_architecture_memo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOS_architecture_memo/Pods-iOS_architecture_memo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AE5CB1286936B3130ADA844C /* [CP] Check Pods Manifest.lock */ = {
@@ -307,7 +302,7 @@
 				F8568BE02304FFA2002FDCE6 /* QiitaListViewController.swift in Sources */,
 				F8568BFB230503AE002FDCE6 /* QiitaItem.swift in Sources */,
 				F82F8E5D2306C9B900A58B91 /* QiitaListView.swift in Sources */,
-				F82F8E612306CA5900A58B91 /* QiitaListModel.swift in Sources */,
+				F82F8E612306CA5900A58B91 /* QiitaListRxModel.swift in Sources */,
 				F8568BF42305032F002FDCE6 /* QiitaDetailViewController.swift in Sources */,
 				F8568BDE2304FFA2002FDCE6 /* AppDelegate.swift in Sources */,
 			);

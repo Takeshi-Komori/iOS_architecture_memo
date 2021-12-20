@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let viewController = QiitaListViewController.createInstance()
         //Modelは外から設定
-        viewController.qiitaListModel = QiitaListModel()
+        viewController.qiitaListRxModel = QiitaListRxModel()
         let rootViewController = UINavigationController(rootViewController: viewController)
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
